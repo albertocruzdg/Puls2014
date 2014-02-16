@@ -5,8 +5,15 @@ var $form = $('#formulario'),
 	$list = $('#contenido'),
 	$post = $('.item').first();
 
+if(localStorage.getItem('autosave'))
+{
+	$titulo.val(sessionStorage.getItem('titulo'));
+	$url.val(sessionStorage.getItem('url'));
+}
+
 function mostrarFormulario(){
 	$form.slideToggle();
+	$list.slideToggle();
 	return false;
 }
 
@@ -22,7 +29,9 @@ function agregarPost(){
 	$clone.hide();
 
 	$list.prepend($clone);
-
+	mostrarFormulario();
+	$titulo.val('');
+	$url.val('');
 	$clone.fadeIn();
 
 	return false;
